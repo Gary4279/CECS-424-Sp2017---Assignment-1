@@ -1,0 +1,86 @@
+"EscapeRoom" by Gary Nunez
+The story genre is "Survival". The story headline is "A quick escape". The story description is "You find yourself in Gary's room, you need to make it out of the house before he returns".
+
+[Creating the first room where the player will start the game.]
+Gary's Room is a room.
+The description of Gary's Room is "there is a bed, TV, Xbox.
+
+The TV and the Xbox are both on. It seems like Gary was playing not too long ago. The name of the Xbox account reads 'Gary4279'.
+
+The closet is the the west.
+
+The Bedroom door leads north."
+
+[Creating a new room where a key will be hidden which opens the bedroom door.]
+Gary's Closet is a room. The description of Gary's Closet is "You stand in side Gary's Closet. In the middle of the closet there is dead body and it is reaching toward a key that is just an inch out of reach. Poor guy never got a chance to escape."
+
+Gary's Closet is west of Gary's Room.
+
+[Placeing the key inside the closet]
+The Bedroom key is here. It unlocks the Bedroom door.
+
+[Creating the door to exit and enter the bedroom and requires a key to open]
+The Bedroom door is a door. 
+The Bedroom door is locked.
+The Bedroom door is north of Gary's Room and south of Living Room. 
+
+[Creating another room that connects to the bedroom.]
+Living Room is a room. 
+[Placing the safe in the living room.]
+The safe is here.  
+The description of the safe is "The safe takes a 4 digit combination, something important must be inside." Instead of opening the safe, say "Instructions to open safe, type 'spin dial to (passcode)'" 
+
+[Adding a tempting trick for the player. Sould the player eat it, they will die. It serves as a small obstacle.]
+The chocolate is here. "There is a very tasty looking chocolate bar on the couch."
+The chocolate is edible.
+
+[Letting the game understand different ways that players would type chocolate.]
+Understand "bar" as chocolate.
+Understand "chocolate bar" as chocolate. 
+
+After eating a chocolate: say "The chocolate was poisoned so you died."; end the story.
+
+[Giving a description of the living room.]
+The description of the Living Room is "You are now in the living room where Gary's family once lived in.  there is a safe, couch, closet, and a television.
+
+Instructions to open safe, type 'spin dial to (passcode)'
+
+The Bedroom door leads south.
+The Front door leads west"
+     
+[Placing the key to the front door inside the safe]
+In the Safe is a Front key. It unlocks the Front door. 
+The Safe is closed and fixed in place. Understand "dial" as the Safe. 
+
+[Defining an action that will allow the player to interact and open the safe]
+Spinning it to is an action applying to one thing and one number. Check spinning it to: if the noun is not the Safe, say "Nothing happened." instead. Report spinning it to: say "Safe is already open." 
+
+[Chaning how the game understands user input to a form that the game understands and can work with,]
+Understand "spin [something] to [a number]" as spinning it to. 
+
+[When the player inputs the correct passcode, the safe opens.]
+After spinning the closed Safe to 4279: now the Safe is open; say "The safe door opens, revealing a Front key." 
+
+[Creating the front door and making it locked.]
+The Front door is a door.  
+The Front door is locked.
+The Front door is west of Living Room and east of Outdoors.
+
+[Making the final destination, when reached the game will end.]
+Outdoors is a room.
+
+[Makes sure that the player can't leave the house without unlocking the front door.]
+Before going to Outdoors: 
+	if Front door is locked:
+		do nothing;
+		say "Front door needs to be unlocked."
+
+[Makes sure that the player can't leave the house without unlocking the front door.]
+Before going to Outdoors: 
+	if Front door is unlocked: 
+		do nothing;
+		end the story saying "You made it outside! Now get the hell out of there!."
+		
+
+[If the player doesn't escape after 16 turns, they will lose and the game will end.]
+Instead of doing something when the turn count is greater than 16: say "Gary came inside and slaughtered you with his chainsaw and stuffed your body in the closet."; end the story.
